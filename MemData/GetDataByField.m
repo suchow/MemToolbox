@@ -3,17 +3,17 @@
 %    data = GetDataByField(data, field, value)
 %
 % e.g., if
-%   data = 
+%   data =
 %      errors: [1x500 double]
 %           n: [1x500 double]
 %        cond: {1x500 cell}
-
+%
 %  with .n = [3 3 3 3 ... 4 4 4 4 ...] and .cond = {'a', 'b', 'a', 'b'...}
 %  then:
 %
 %    data = GetDataByField(data, 'n', 3)
 %
-%    data = 
+%    data =
 %      errors: [1x250 double]
 %           n: [1x250 double]
 %        cond: {1x250 cell}
@@ -22,13 +22,13 @@
 %
 %    data = GetDataByField(data, 'cond', 'a')
 %
-%    data = 
+%    data =
 %      errors: [1x250 double]
 %           n: [1x250 double]
 %        cond: {1x250 cell}
 %
 function data = GetDataByField(data, field, value)
-  
+
   % If the given field doesn't exist, return the data struct untouched
   if(~isfield(data, field))
     warning('The specified field does not exist.')
@@ -45,7 +45,7 @@ function data = GetDataByField(data, field, value)
     warning('No elements of that field have that value.')
     return;
   end
-  
+
   % For each field, split it by condition and store it
   fields = fieldnames(data);
   for fieldIndex = 1:length(fields)
