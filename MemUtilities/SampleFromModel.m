@@ -61,7 +61,7 @@ function samp = SampleFromModel(model, params, dims, displayInfo)
     end
   end
 
-  % If the model has an efficient generator, use it. otherwise use rejection sampling
+  % If the model has an efficient generator, use it. Otherwise, use rejection sampling.
   if(isfield(model, 'generator'))
     samp = model.generator(params, dims, displayInfo);
     return
