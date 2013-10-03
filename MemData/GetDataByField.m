@@ -34,8 +34,8 @@ function data = GetDataByField(data, field, value)
     warning('The specified field does not exist.')
     return;
   end
-  
-  curField = getfield(data,field);
+
+  curField = data.(field);
   if iscell(curField)
     getWhich = cellfun(@(x)(isequal(x, value)), curField);
   else
@@ -49,16 +49,14 @@ function data = GetDataByField(data, field, value)
   % For each field, split it by condition and store it
   fields = fieldnames(data);
   for fieldIndex = 1:length(fields)
-    wholeField = getfield(data, fields{fieldIndex});
-    
+    wholeField = data.(fields{fieldIndex});
+
     % Preserve all rows of fields like .distractors that are M x trials
     % and allow them to also be trials X M
     if size(wholeField, 1) == length(getWhich)
-      data = setfield(data, fields{fieldIndex}, ...
-        wholeField(getWhich, :));
+      data.(fields{fieldIndex}) = wholeField(getWhich, :);
     elseif size(wholeField, 2) == length(getWhich)
-      data = setfield(data, fields{fieldIndex}, ...
-        wholeField(:, getWhich));
+      data.(fields{fieldIndex}) = wholeField(:, getWhich);
     else
       fprintf('Warning: Could not remove relevant parts from field "%s"!\n', fields{fieldIndex});
     end
