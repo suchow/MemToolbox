@@ -13,3 +13,4 @@
 % Utility functions
 %   MCMCSummarize                    - Convert samples from MCMC into estimates of parameters
 %   SampleFromPosterior              - turn a fullPosterior into a posteriorSamples by sampling
+
